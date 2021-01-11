@@ -1,0 +1,25 @@
+@{
+  Layout = "_Layout";
+}
+
+@using ProjectName.Models;
+@model IEnumerable<ProjectName.Models.Child>;
+
+<h1>Childs for @User.Identity.Name</h1>
+
+@if (@Model.Any())
+{
+    @foreach (Child child in Model)
+    {
+        @Html.ActionLink($"{child.Description}", "Details", new { id = child.ChildId })
+    }
+} 
+else
+{
+    <h3>No child objects have been created yet</h3>
+}
+
+
+<p>@Html.ActionLink("Add new child", "Create")</p>
+
+<p>@Html.ActionLink("Home", "Index", "Home")</p>
