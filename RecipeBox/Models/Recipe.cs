@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System;
+
 
 namespace RecipeBox.Models
 {
@@ -13,7 +13,9 @@ namespace RecipeBox.Models
 
         public int RecipeId { get; set; }
         public string RecipeName { get; set; }
+        [DataType(DataType.MultilineText)]
         public string Instructions { get; set; }
+        [DataType(DataType.MultilineText)]
         public string Ingredient { get; set; }
         public virtual ApplicationUser User { get; set; }
 

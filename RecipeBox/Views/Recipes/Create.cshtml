@@ -12,10 +12,10 @@
     @Html.TextBoxFor(model => model.RecipeName)
 
     <p>Recipe Ingredients:</p>
-    @Html.TextAreaFor(model => model.Ingredient)
+    @Html.TextAreaFor(model => model.Ingredient, new { cols = "55", rows = "10" })
 
     <p>Recipe Instructions:</p>
-    @Html.TextAreaFor(model => model.Instructions)
+    @Html.TextAreaFor(model => model.Instructions, new { cols = "55", rows = "10" })
     <br>
 
     @Html.Label("Select a Recipe Tag")
