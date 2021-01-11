@@ -1,10 +1,10 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace ProjectName.ViewModels
+namespace RecipeBox.ViewModels
 {
     public class RegisterViewModel
     {
-        [Reguired]
+        [Required]
         [EmailAddress]
         [Display(Name="Email")]
         public string Email { get; set; }

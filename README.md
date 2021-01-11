@@ -15,9 +15,6 @@
 
 ## Description: 
 
-
-
-
 ## Preview:
 
 #### User Stories:

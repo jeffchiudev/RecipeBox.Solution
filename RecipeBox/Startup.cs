@@ -26,11 +26,11 @@ namespace RecipeBox
             services.AddMvc();
 
             services.AddEntityFrameworkMySql()
-                .AddDbContext<ProjectNameContext>(options => options
+                .AddDbContext<RecipeBoxContext>(options => options
                 .UseMySql(Configuration["ConnectionStrings:DefaultConnection"]));
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
-                        .AddEntityFrameworkStores<ProjectNameContext>()
+                        .AddEntityFrameworkStores<RecipeBoxContext>()
                         .AddDefaultTokenProviders();
 
             services.Configure<IdentityOptions>(options =>

@@ -1,15 +1,15 @@
-@{
+@* @{
     Layout = "_Layout";
-}
+    }
 
-@using ProjectName.ViewModels
+    @using ProjectName.ViewModels
 
-@model RegisterViewModel
+    @model RegisterViewModel
 
-<h2>Register a new user</h2>
-<hr />
-@using (Html.BeginForm("Register", "Account", FormMethod.Post))
-{
+    <h2>Register a new user</h2>
+    <hr />
+    @using (Html.BeginForm("Register", "Account", FormMethod.Post))
+    {
     @Html.LabelFor(user => user.Email)
     @Html.TextBoxFor(user=> user.Email)
 
@@ -20,4 +20,4 @@
     @Html.PasswordFor(user=> user.ConfirmPassword)
 
     <input type="submit" value="Register" />
-}
+    } *@

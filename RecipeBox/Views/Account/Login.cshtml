@@ -1,14 +1,14 @@
-@{
+@* @{
     Layout = "_Layout";
-}
+    }
 
-@using ProjectName.ViewModels
-@model LoginViewModel
+    @using ProjectName.ViewModels
+    @model LoginViewModel
 
-<h2>Login With Your Account</h2>
-<hr/>
-@using (Html.BeginForm())
-{
+    <h2>Login With Your Account</h2>
+    <hr/>
+    @using (Html.BeginForm())
+    {
     @Html.LabelFor(m => m.Email)
     @Html.TextBoxFor(m => m.Email)
 
@@ -16,4 +16,4 @@
     @Html.PasswordFor(m => m.Password)
 
     <input type="submit" value="Log in" class="btn btn-primary"/>
-}
+    } *@
