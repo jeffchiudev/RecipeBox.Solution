@@ -1,10 +1,10 @@
-@* @{
+@{
     Layout = "_Layout";
     }
 
     @using System.Security.Claims
 
-    <h2>Authentication with Identity</h2>
+    <h2>Recipe Box Login</h2>
     <hr />
     @if (User.Identity.IsAuthenticated)
     {
@@ -19,4 +19,4 @@
     <p>@Html.ActionLink("Register", "Register")</p>
     <p>@Html.ActionLink("Log In", "Login")</p>
     }
-    <p>@Html.ActionLink("Home", "Index", "Home")</p> *@
+    <p>@Html.ActionLink("Home", "Index", "Home")</p>
