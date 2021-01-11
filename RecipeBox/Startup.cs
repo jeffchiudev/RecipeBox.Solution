@@ -5,9 +5,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Identity;
-using ProjectName.Models;
+using RecipeBox.Models;
 
-namespace ProjectName
+namespace RecipeBox
 {
     public class Startup
     {
@@ -41,7 +41,7 @@ namespace ProjectName
                 options.Password.RequireNonAlphanumeric = false;
                 options.Password.RequireUppercase = false;
                 options.Password.RequiredUniqueChars = 0;
-            })
+            });
         }
 
         public void Configure(IApplicationBuilder app)
