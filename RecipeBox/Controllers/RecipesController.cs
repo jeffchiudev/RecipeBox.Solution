@@ -27,7 +27,7 @@ namespace RecipeBox.Controllers
         {
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             var currentUser = await _userManager.FindByIdAsync(userId);
-            var userRecipes = _db.Recipes.Where(entry => entry.User.Id == currentUser.Id).ToList();
+            var userRecipes = _db.Recipes.Where(entry => entry.User.Id == currentUser.Id).OrderByDescending(rating => rating.Rating).ToList();
             return View(userRecipes);
         }
 
@@ -73,7 +73,12 @@ namespace RecipeBox.Controllers
         {
             if (TagId != 0)
             {
-                _db.RecipeTag.Add(new RecipeTag() { TagId = TagId, RecipeId = recipe.RecipeId });
+                var returnedJoined = _db.RecipeTag
+                .Any(join => join.RecipeId == recipe.RecipeId && join.TagId == TagId);
+                if (!returnedJoined)
+                {
+                    _db.RecipeTag.Add(new RecipeTag() { TagId = TagId, RecipeId = recipe.RecipeId });
+                }
             }
             _db.Entry(recipe).State = EntityState.Modified;
             _db.SaveChanges();

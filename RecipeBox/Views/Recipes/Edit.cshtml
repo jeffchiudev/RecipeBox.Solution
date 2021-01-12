@@ -15,6 +15,13 @@
     <p>Recipe Name:</p>
     @Html.EditorFor(model => model.RecipeName)
 
+    <p>Recipe Rating:</p>
+    <p>@Html.RadioButtonFor(model => model.Rating, "*") 1 Star</p>
+    <p>@Html.RadioButtonFor(model => model.Rating, "**") 2 Star</p>
+    <p>@Html.RadioButtonFor(model => model.Rating, "***") 3 Star</p>
+    <p>@Html.RadioButtonFor(model => model.Rating, "****") 4 Star</p>
+    <p>@Html.RadioButtonFor(model => model.Rating, "*****") 5 Star</p>
+
     <p>Ingredients:</p>
     @Html.TextAreaFor(model => model.Ingredient, new { cols = "55", rows = "10" })
 
@@ -28,6 +35,6 @@
     <br>
     <input type="submit" value="Save" class="btn btn-primary" />
 }
-<hr/>
+<hr />
 <p>@Html.ActionLink("Back to list", "Index")</p>
 <p>@Html.ActionLink("Home", "Index", "Home")</p>

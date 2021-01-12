@@ -16,7 +16,13 @@
 
     <p>Recipe Instructions:</p>
     @Html.TextAreaFor(model => model.Instructions, new { cols = "55", rows = "10" })
-    <br>
+
+    <p>Recipe Rating:</p>
+    <p>@Html.RadioButtonFor(model => model.Rating, "*") 1 Star</p>
+    <p>@Html.RadioButtonFor(model => model.Rating, "**") 2 Star</p>
+    <p>@Html.RadioButtonFor(model => model.Rating, "***") 3 Star</p>
+    <p>@Html.RadioButtonFor(model => model.Rating, "****") 4 Star</p>
+    <p>@Html.RadioButtonFor(model => model.Rating, "*****") 5 Star</p>
 
     @Html.Label("Select a Recipe Tag")
     @Html.DropDownList("TagId")

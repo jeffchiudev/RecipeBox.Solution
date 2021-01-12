@@ -25,7 +25,7 @@
 || As a user, I want to be able to update and delete tags, so I can have flexibility with how I categorize recipes. | true |
 || As a user, I want to edit my recipes, so I can make improvements or corrections to my recipes. | true |
 || As a user, I want to be able to delete recipes I don't like or use, so I don't have to see them as choices. | true |
-|| As a user, I want to rate my recipes, so I know which ones are the best. ||
+|| As a user, I want to rate my recipes, so I know which ones are the best. | true |
 || As a user, I want to list my recipes by highest rated so I can see which ones I like the best. ||
 || As a user, I want to see all recipes that use a certain ingredient, so I can more easily find recipes for the ingredients I have. | |
 
