@@ -8,6 +8,12 @@
 <h1>@User.Identity.Name's Recipes</h1>
 <hr/>
 
+@using (Html.BeginForm("search", "Recipes"))
+{
+    @Html.TextBox("Search", null, new {@class="form-control"})
+    <input type="submit" value="Search" class="btn btn-primary">
+}
+<hr/>
 @if (@Model.Any())
 {
     @foreach (Recipe recipe in Model)
@@ -22,5 +28,4 @@ else
 
 <hr/>
 <p>@Html.ActionLink("Add New Recipe", "Create")</p>
-
 <p>@Html.ActionLink("Home", "Index", "Home")</p>

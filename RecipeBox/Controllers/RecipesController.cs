@@ -126,5 +126,12 @@ namespace RecipeBox.Controllers
             _db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+        [HttpPost]
+        public ActionResult Search(string search)
+        {
+            List<Recipe> model = _db.Recipes.Where(recipe => (recipe.Ingredient.Contains(search))).ToList();
+            return View(model);
+        }
     }
 }
