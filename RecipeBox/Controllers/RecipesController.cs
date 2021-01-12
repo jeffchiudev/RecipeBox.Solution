@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using RecipeBox.Models;
 
+
 namespace RecipeBox.Controllers
 {
     [Authorize]
@@ -127,11 +128,22 @@ namespace RecipeBox.Controllers
             return RedirectToAction("Index");
         }
 
+        // [HttpPost]
+        // Search all recipes in db
+        // public ActionResult Search(string search)
+        // {
+        //     List<Recipe> model = _db.Recipes.Where(recipe => (recipe.Ingredient.Contains(search))).ToList();
+        //     return View(model);
+        // }
+
         [HttpPost]
-        public ActionResult Search(string search)
+        public async Task<ActionResult> Search(string search)
         {
-            List<Recipe> model = _db.Recipes.Where(recipe => (recipe.Ingredient.Contains(search))).ToList();
-            return View(model);
+            var thisUserId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var thisCurrentUser = await _userManager.FindByIdAsync(thisUserId);
+            var userRecipes = _db.Recipes.Where(entry => entry.User.Id == thisCurrentUser.Id);
+            var searchedUserRecipes = userRecipes.Where(recipe => (recipe.Ingredient.Contains(search))).ToList();
+            return View(searchedUserRecipes);
         }
     }
 }
