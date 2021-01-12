@@ -1,3 +1,11 @@
-h3 {
+body {
+    background-image: url("https://images.unsplash.com/photo-1517856497829-3047e3fffae1?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTE3fHxjb29raW5nfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.instructions, .ingredients {
     white-space: pre;
+    border: 7px dotted #ddd4cd;
+    padding: 2%;
+    opacity: 0.8;
 }

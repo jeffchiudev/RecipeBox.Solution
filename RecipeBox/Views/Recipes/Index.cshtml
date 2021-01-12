@@ -6,6 +6,7 @@
 @model IEnumerable<RecipeBox.Models.Recipe>;
 
 <h1>@User.Identity.Name's Recipes</h1>
+<hr/>
 
 @if (@Model.Any())
 {
@@ -20,6 +21,6 @@ else
 }
 
 <hr/>
-<p>@Html.ActionLink("Add new Recipe", "Create")</p>
+<p>@Html.ActionLink("Add New Recipe", "Create")</p>
 
 <p>@Html.ActionLink("Home", "Index", "Home")</p>

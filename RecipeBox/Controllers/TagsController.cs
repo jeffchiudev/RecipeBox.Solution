@@ -38,7 +38,7 @@ namespace RecipeBox.Controllers
         {
             var thisTag = _db.Tags
                 .Include(tag => tag.Recipes)
-                .ThenInclude(join => join.Tag)
+                .ThenInclude(join => join.Recipe)
                 .FirstOrDefault(tag => tag.TagId == id);
             return View(thisTag);
         }

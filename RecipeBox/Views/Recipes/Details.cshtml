@@ -6,9 +6,15 @@
 
 <h2>Recipe Details</h2>
 <hr />
-<h3>@Html.DisplayNameFor(model => model.RecipeName): @Html.DisplayFor(model => model.RecipeName)</h3>
-<h3>Recipe Instructions: @Html.DisplayFor(model => model.Instructions)<h3>
-<h3>Recipe Ingredients: @Html.DisplayFor(model => model.Ingredient)<h3>
+<h3>Recipe Name: @Html.DisplayFor(model => model.RecipeName)</h3>
+<h3>Recipe Instructions: </h3>
+<div class="instructions">
+<h5>@Html.DisplayFor(model => model.Instructions)</h5>
+</div>
+<h3>Recipe Ingredients: </h3>
+<div class="ingredients">
+<h5>@Html.DisplayFor(model => model.Ingredient)</h5>
+</div>
 
 
 @if(@Model.Tags.Count == 0)
@@ -31,8 +37,9 @@ else
     }
     </ul>
 }
-
+<hr/>
 <p>@Html.ActionLink("Back to Recipe list", "Index")</p>
 <p>@Html.ActionLink("Edit Recipe", "Edit", new { id = Model.RecipeId })</p>
 <p>@Html.ActionLink("Add a Tag", "AddTag", new { id = Model.RecipeId })</p>
 <p>@Html.ActionLink("Delete Recipe", "Delete", new { id = Model.RecipeId })</p>
+<p>@Html.ActionLink("Home", "Index", "Home")</p>
