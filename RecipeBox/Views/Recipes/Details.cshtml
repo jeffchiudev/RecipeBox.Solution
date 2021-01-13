@@ -12,7 +12,7 @@
 @if (Model.Rating == "*")
 {
     <h3>Recipe Rating: <img
-            src="https://lh3.googleusercontent.com/proxy/UxoOpaiesnwtU-Efnb2bh8zL3zjgMed4d9eA0Vo7PNJJA90fYDZPxZqTy0jVFTRScWKtYOOyKx18vXHfDDWH63cJb3WGYk4-1ihGrEKQSQ"
+            src="https://i.pinimg.com/originals/68/49/50/684950461e93bbcdfa97f64ab0047203.png"
             width="4%" height="auto" style="border-radius: 50%">  </h3>
 }
 else if (Model.Rating == "**")
@@ -66,7 +66,7 @@ else
             @using (Html.BeginForm("DeleteTag", "Recipes"))
             {
                 @Html.Hidden("joinId", @join.RecipeTagId)
-                <input type="submit" value="Delete"/>
+                <input type="submit" value="Delete" class="btn btn-primary"/>
             }
         }
     }

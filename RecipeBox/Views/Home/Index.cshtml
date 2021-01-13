@@ -3,7 +3,20 @@
 }
 
 <h1>Welcome to the Recipe Box!</h1>
-<hr/>
-<p>@Html.ActionLink("Create an account", "Index", "Account")</p>
-<p>@Html.ActionLink("See all Recipe Tags", "Index", "Tags")</p>
-<p>@Html.ActionLink("See all Recipes", "Index", "Recipes")</p>
+<hr />
+@if (User.Identity.IsAuthenticated)
+{
+    <p>@Html.ActionLink("See all Recipe Tags", "Index", "Tags", null, new {@class="btn btn-primary"})</p>
+    <p>@Html.ActionLink("See all Recipes", "Index", "Recipes", null, new {@class="btn btn-primary"})</p>
+     @using (Html.BeginForm("LogOff", "Account"))
+    {
+    <input type="submit" class="btn btn-primary" value="Log Out"/>
+    }
+}
+else
+{    
+    <p>@Html.ActionLink("Log in", "Login", "Account", null, new {@class="btn btn-primary"})</p>
+    <p>@Html.ActionLink("Create Account", "Index", "Account", null, new {@class="btn btn-primary"})</p>
+    <p>@Html.ActionLink("See all Recipe Tags", "Index", "Tags", null, new {@class="btn btn-primary"})</p>
+    <p>@Html.ActionLink("See all Recipes", "Index", "Recipes", null, new {@class="btn btn-primary"})</p>
+}

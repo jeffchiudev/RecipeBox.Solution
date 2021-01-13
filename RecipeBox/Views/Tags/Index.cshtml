@@ -6,7 +6,7 @@
 @model List<RecipeBox.Models.Tag>;
 
 <h1>Tags</h1>
-<hr/>
+<hr />
 @if (@Model.Count == 0)
 {
     <h3>No Tags have been added yet!</h3>
@@ -14,8 +14,8 @@
 
 @foreach (Tag tag in Model)
 {
-    <li>@Html.ActionLink($"{tag.TagName}", "Details", new { id = tag.TagId })</li>
+    @Html.ActionLink($"{tag.TagName}", "Details", new { id = tag.TagId })<br>
 }
-<hr/>
-<p>@Html.ActionLink("Add New Tag", "Create")</p>
-<p>@Html.ActionLink("Home", "Index", "Home")</p>
+<hr />
+<p>@Html.ActionLink("Add New Tag", "Create", null, null, new {@class="btn btn-primary"})</p>
+<p>@Html.ActionLink("Home", "Index", "Home", null, new {@class="btn btn-primary"})</p>

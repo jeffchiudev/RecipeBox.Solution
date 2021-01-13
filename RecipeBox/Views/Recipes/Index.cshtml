@@ -5,9 +5,18 @@
 @using RecipeBox.Models;
 @model IEnumerable<RecipeBox.Models.Recipe>;
 
-<h1>@User.Identity.Name's Recipes</h1>
-<hr/>
 
+@if (User.Identity.IsAuthenticated)
+{
+    <h1>@User.Identity.Name's Recipes</h1>
+    <hr/>
+}
+else
+{
+    <h1>Welcome to RecipeBox!</h1>
+    <p>Click on a Recipe Name to see the details of the recipe. Type in an ingredient to see a list of recipes that use this ingredients</p>
+    <hr/>
+}
 @using (Html.BeginForm("search", "Recipes"))
 {
     @Html.TextBox("Search")
@@ -27,8 +36,16 @@ else
 }
 
 <hr/>
+<p>@Html.ActionLink("Home", "Index", "Home", null, new {@class="btn btn-primary"})</p>
 @if (User.Identity.IsAuthenticated)
 {
-    <p>@Html.ActionLink("Add New Recipe", "Create", null, null, new {@class="btn btn-primary"})</p>
+    <h4>@Html.ActionLink("Add New Recipe", "Create", null, null, new {@class="btn btn-primary"})</h4>
 }
-<p>@Html.ActionLink("Home", "Index", "Home", null, new {@class="btn btn-primary"})</p>
+else 
+{
+    <div class="createAccountLinks">
+    <h4>Would you like to add your own recipes? @Html.ActionLink("Click Here", "Register", "Account") to create an account.</h4>
+    <h4>@Html.ActionLink("Click Here", "Login", "Account") to log in to your account.</h4>
+    </div>
+}
+
