@@ -27,5 +27,8 @@ else
 }
 
 <hr/>
-<p>@Html.ActionLink("Add New Recipe", "Create", null, null, new {@class="btn btn-primary"})</p>
+@if (User.Identity.IsAuthenticated)
+{
+    <p>@Html.ActionLink("Add New Recipe", "Create", null, null, new {@class="btn btn-primary"})</p>
+}
 <p>@Html.ActionLink("Home", "Index", "Home", null, new {@class="btn btn-primary"})</p>
