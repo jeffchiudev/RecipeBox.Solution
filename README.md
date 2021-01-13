@@ -10,7 +10,7 @@
 
 </div>
 <h3 align="center">A recipe box database, 13.Jan.2021</h3>
-<h4 align="center"> By Jeff Chiu & Agata Kolodziej</h4>
+<h4 align="center"> By Jeff Chiu & Carmen Agata Kolodziej</h4>
 
 
 ## Description: 
@@ -106,4 +106,4 @@ If any errors or bugs occur please email me [here](jeffchiudev@gmail.com).
 
 This software is licensed under the [MIT License](https://choosealicense.com/licenses/mit/).
 
-<img src="https://apprecs.org/gp/images/app-icons/300/7c/air.capoo.jpg" width="1%" height="auto" style="border-radius: 50%"> Copyright (c) 2021 Jeff Chiu 
+<img src="https://apprecs.org/gp/images/app-icons/300/7c/air.capoo.jpg" width="1%" height="auto" style="border-radius: 50%"> <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8Q_3EVY7j95tTyemJwWxMR7jwvUK7gPe0_w&usqp=CAU" width="2%" height="auto" style="border-radius: 50%">Copyright (c) 2021 Jeff Chiu & Carmen Agata Kolodziej
