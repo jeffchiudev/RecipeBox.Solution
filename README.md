@@ -18,6 +18,7 @@
 ## Preview:
 
 #### User Stories:
+
 | ID | User Story | Accepted |
 | :-------- | :------ | :------- |
 | US001 | As a user, I want to add a recipe with ingredients and instructions, so I remember how to prepare my favorite dishes. | true |
@@ -27,7 +28,7 @@
 | US005 | As a user, I want to be able to delete recipes I don't like or use, so I don't have to see them as choices. | true |
 | US006 | As a user, I want to rate my recipes, so I know which ones are the best. | true |
 | US007 | As a user, I want to list my recipes by highest rated so I can see which ones I like the best. | true |
-| US008 | As a user, I want to see all recipes that use a certain ingredient, so I can more easily find recipes for the ingredients I have. | |
+| US008 | As a user, I want to see all recipes that use a certain ingredient, so I can more easily find recipes for the ingredients I have. | true |
 
 ##### Software Requirements
 
