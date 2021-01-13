@@ -1,11 +1,17 @@
 body {
-    background-image: url("https://images.unsplash.com/photo-1517856497829-3047e3fffae1?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTE3fHxjb29raW5nfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60");
+    /* background-image: url("https://images.unsplash.com/photo-1517856497829-3047e3fffae1?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTE3fHxjb29raW5nfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60"); */
+    background-image: url('../img/background.jpg');
     background-repeat: no-repeat;
     background-size: cover;
 }
 .instructions, .ingredients {
     white-space: pre;
-    border: 7px dotted #ddd4cd;
+    border: 7px dotted #b0c3bd;
     padding: 2%;
     opacity: 0.8;
 }
+
+.detailsBody {
+    margin: 5%;
+}
+/* #c57166 */

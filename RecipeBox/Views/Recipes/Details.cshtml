@@ -3,11 +3,40 @@
 }
 
 @model RecipeBox.Models.Recipe
-
+<div class="detailsBody">
 <h2>Recipe Details</h2>
 <hr />
 <h3>Recipe Name: @Html.DisplayFor(model => model.RecipeName) 
-<h3>Recipe Rating: @Html.DisplayFor(model => model.Rating)</h3>
+@if (Model.Rating == "*")
+{
+    <h3>Recipe Rating: <img
+            src="https://lh3.googleusercontent.com/proxy/UxoOpaiesnwtU-Efnb2bh8zL3zjgMed4d9eA0Vo7PNJJA90fYDZPxZqTy0jVFTRScWKtYOOyKx18vXHfDDWH63cJb3WGYk4-1ihGrEKQSQ"
+            width="4%" height="auto" style="border-radius: 50%">  </h3>
+}
+else if (Model.Rating == "**")
+{
+    <h3>Recipe Rating: <img
+            src="https://s3-us-west-2.amazonaws.com/rpmmultisite/wp-content/uploads/sites/38/2018/03/15220551/ThumbsDownEmoji.jpg"
+            width="4%" height="auto" style="border-radius: 50%">  </h3>
+}
+else if (Model.Rating == "***")
+{
+    <h3>Recipe Rating: <img
+            src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/lg/57/neutral-face_1f610.png"
+            width="4%" height="auto" style="border-radius: 50%">  </h3>
+}
+else if (Model.Rating == "****")
+{
+    <h3>Recipe Rating: <img
+            src="https://e7.pngegg.com/pngimages/925/558/png-clipart-smiley-emoji-emoticon-sticker-blushing-emoji-miscellaneous-face.png"
+            width="4%" height="auto" style="border-radius: 50%">  </h3>
+}
+else if (Model.Rating == "*****")
+{
+    <h3>Recipe Rating: <img
+            src="https://image.shutterstock.com/image-vector/drooling-emoji-face-flat-style-260nw-1649246248.jpg"
+            width="4%" height="auto" style="border-radius: 50%">  </h3>
+}
 <h3>Recipe Ingredients: </h3>
 <div class="ingredients">
 <h5>@Html.DisplayFor(model => model.Ingredient)</h5>
@@ -39,8 +68,9 @@ else
     </ul>
 }
 <hr/>
-<p>@Html.ActionLink("Back to Recipe list", "Index")</p>
-<p>@Html.ActionLink("Edit Recipe", "Edit", new { id = Model.RecipeId })</p>
-<p>@Html.ActionLink("Add a Tag", "AddTag", new { id = Model.RecipeId })</p>
-<p>@Html.ActionLink("Delete Recipe", "Delete", new { id = Model.RecipeId })</p>
-<p>@Html.ActionLink("Home", "Index", "Home")</p>
+<p>@Html.ActionLink("Back to Recipe list", "Index", null, null, new {@class="btn btn-primary"})</p>
+<p>@Html.ActionLink("Edit Recipe", "Edit", new { id = Model.RecipeId }, new {@class="btn btn-primary"})</p>
+<p>@Html.ActionLink("Add a Tag", "AddTag", new { id = Model.RecipeId }, new {@class="btn btn-primary"})</p>
+<p>@Html.ActionLink("Delete Recipe", "Delete", new { id = Model.RecipeId }, new {@class="btn btn-primary"})</p>
+<p>@Html.ActionLink("Home", "Index", "Home", null, new {@class="btn btn-primary"})</p>
+</div>

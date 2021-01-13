@@ -3,7 +3,7 @@
 }
 @using System.Security.Claims
 @using RecipeBox.Models;
-@model List<Recipe>;
+@* @model List<Recipe>; *@
 
 <h2>Your search results:</h2>
 <hr />
@@ -17,5 +17,5 @@
     <h3>@Html.ActionLink($"{recipe.RecipeName}", "Details", new { id = recipe.RecipeId})</h3>
 }
 
-<p>@Html.ActionLink("Return to recipe list", "Index")</p>
-<p>@Html.ActionLink("Home", "Index", "Home")</p>
+<p>@Html.ActionLink("Return to recipe list", "Index", null, null, new {@class="btn btn-primary"})</p>
+<p>@Html.ActionLink("Home", "Index", "Home", null, new {@class="btn btn-primary"})</p>

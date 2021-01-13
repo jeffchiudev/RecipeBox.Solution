@@ -10,7 +10,7 @@
 
 @using (Html.BeginForm("search", "Recipes"))
 {
-    @Html.TextBox("Search", null, new {@class="form-control"})
+    @Html.TextBox("Search")
     <input type="submit" value="Search" class="btn btn-primary">
 }
 <hr/>
@@ -27,5 +27,5 @@ else
 }
 
 <hr/>
-<p>@Html.ActionLink("Add New Recipe", "Create")</p>
-<p>@Html.ActionLink("Home", "Index", "Home")</p>
+<p>@Html.ActionLink("Add New Recipe", "Create", null, null, new {@class="btn btn-primary"})</p>
+<p>@Html.ActionLink("Home", "Index", "Home", null, new {@class="btn btn-primary"})</p>

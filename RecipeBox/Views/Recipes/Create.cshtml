@@ -4,30 +4,41 @@
 
 @model RecipeBox.Models.Recipe
 
-<h4>Add a new recipe!</h4>
-
+<h2>Add a New Recipe!</h2>
+<hr />
 @using (Html.BeginForm())
 {
-    <p>Recipe Title:</p>
+    <h3>Recipe Title:</h3>
     @Html.TextBoxFor(model => model.RecipeName)
 
-    <p>Recipe Ingredients:</p>
+    <h3>Recipe Ingredients:</h3>
     @Html.TextAreaFor(model => model.Ingredient, new { cols = "55", rows = "10" })
 
-    <p>Recipe Instructions:</p>
+    <h3>Recipe Instructions:</h3>
     @Html.TextAreaFor(model => model.Instructions, new { cols = "55", rows = "10" })
 
-    <p>Recipe Rating:</p>
-    <p>@Html.RadioButtonFor(model => model.Rating, "*") 1 Star</p>
-    <p>@Html.RadioButtonFor(model => model.Rating, "**") 2 Star</p>
-    <p>@Html.RadioButtonFor(model => model.Rating, "***") 3 Star</p>
-    <p>@Html.RadioButtonFor(model => model.Rating, "****") 4 Star</p>
-    <p>@Html.RadioButtonFor(model => model.Rating, "*****") 5 Star</p>
+    <h3>Recipe Rating:</h3>
+    <p>@Html.RadioButtonFor(model => model.Rating, "*") 1 Star <img
+            src="https://lh3.googleusercontent.com/proxy/UxoOpaiesnwtU-Efnb2bh8zL3zjgMed4d9eA0Vo7PNJJA90fYDZPxZqTy0jVFTRScWKtYOOyKx18vXHfDDWH63cJb3WGYk4-1ihGrEKQSQ"
+            width="4%" height="auto" style="border-radius: 50%"></p>
+    <p>@Html.RadioButtonFor(model => model.Rating, "**") 2 Star<img
+            src="https://s3-us-west-2.amazonaws.com/rpmmultisite/wp-content/uploads/sites/38/2018/03/15220551/ThumbsDownEmoji.jpg"
+            width="4%" height="auto" style="border-radius: 50%"></p>
+    <p>@Html.RadioButtonFor(model => model.Rating, "***") 3 Star<img
+            src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/lg/57/neutral-face_1f610.png"
+            width="4%" height="auto" style="border-radius: 50%"></p>
+    <p>@Html.RadioButtonFor(model => model.Rating, "****") 4 Star<img
+            src="https://e7.pngegg.com/pngimages/925/558/png-clipart-smiley-emoji-emoticon-sticker-blushing-emoji-miscellaneous-face.png"
+            width="4%" height="auto" style="border-radius: 50%"></p>
+    <p>@Html.RadioButtonFor(model => model.Rating, "*****") 5 Star<img
+            src="https://image.shutterstock.com/image-vector/drooling-emoji-face-flat-style-260nw-1649246248.jpg" width="4%"
+            height="auto" style="border-radius: 50%"></p>
 
     @Html.Label("Select a Recipe Tag")
     @Html.DropDownList("TagId")
 
-    <input type="submit" value="Add new recipe" class="btn btn-default" />
+    <input type="submit" value="Add new recipe" class="btn btn-primary" />
 }
-<p>@Html.ActionLink("Show all recipes", "Index")</p>
-<p>@Html.ActionLink("Home", "Index", "Home")</p>
+<hr />
+<p>@Html.ActionLink("Show all recipes", "Index", null, null, new {@class="btn btn-primary"})</p>
+<p>@Html.ActionLink("Home", "Index", "Home", null, new {@class="btn btn-primary"})</p>
