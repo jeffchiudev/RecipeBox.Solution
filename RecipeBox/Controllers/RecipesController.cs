@@ -12,7 +12,6 @@ using RecipeBox.Models;
 
 namespace RecipeBox.Controllers
 {
-    [Authorize]
     public class RecipesController : Controller
     {
         private readonly RecipeBoxContext _db;
@@ -24,14 +23,13 @@ namespace RecipeBox.Controllers
             _db = db;
         }
 
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
         {
-            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            var currentUser = await _userManager.FindByIdAsync(userId);
-            var userRecipes = _db.Recipes.Where(entry => entry.User.Id == currentUser.Id).OrderByDescending(rating => rating.Rating).ToList();
-            return View(userRecipes);
+            var allUserRecipes = _db.Recipes.ToList();
+            return View(allUserRecipes);
         }
 
+        [Authorize]
         public ActionResult Create()
         {
             ViewBag.TagId = new SelectList(_db.Tags, "TagId", "TagName");
@@ -52,19 +50,41 @@ namespace RecipeBox.Controllers
             _db.SaveChanges();
             return RedirectToAction("Index");
         }
-
+        // In the Details route we need to find the user associated with the item so that in the view, we can show the edit, delete or add category links if the item "belongs" to that user. Line 62 involves checking if the userId has returned as null, and if it has then IsCurrentUser is set to false, if it has not, then the program evaluates whether userId is equal to thisItem.User.Id.
+        //Line 63 if user id is not null compare userId to thisRecipe's userId and if true return true, if userId is null return false
         public ActionResult Details(int id)
         {
             var thisRecipe = _db.Recipes
                 .Include(recipe => recipe.Tags)
                 .ThenInclude(join => join.Tag)
+                .Include(recipe => recipe.User)
                 .FirstOrDefault(recipe => recipe.RecipeId == id);
+            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            ViewBag.IsCurrentUser = userId != null ? userId == thisRecipe.User.Id : false; //
+                                                                                           // if(userId != null) if userId not null (condition ? consequent : alternative)
+                                                                                           // {
+                                                                                           //     if(userId == thisRecipe.User.Id) does this userId equal this recipes user id if true
+                                                                                           //     {
+                                                                                           //        
+                                                                                           //     }
+                                                                                           // }
+                                                                                           // else
+                                                                                           // {
+                                                                                           //     ViewBat.IsCurrentUser = false
+                                                                                           // }
             return View(thisRecipe);
         }
 
-        public ActionResult Edit(int id)
+        [Authorize]
+        public async Task<ActionResult> Edit(int id)
         {
-            var thisRecipe = _db.Recipes.FirstOrDefault(recipes => recipes.RecipeId == id);
+            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var currentUser = await _userManager.FindByIdAsync(userId);
+            var thisRecipe = _db.Recipes.Where(entry => entry.User.Id == currentUser.Id).FirstOrDefault(recipes => recipes.RecipeId == id);
+            if (thisRecipe == null)
+            {
+                return RedirectToAction("Details", new { id = id });
+            }
             ViewBag.TagId = new SelectList(_db.Tags, "TagId", "TagName");
             return View(thisRecipe);
         }
@@ -74,7 +94,7 @@ namespace RecipeBox.Controllers
         {
             if (TagId != 0)
             {
-                var returnedJoined = _db.RecipeTag
+                var returnedJoined = _db.RecipeTag //for preventing duplicate tags
                 .Any(join => join.RecipeId == recipe.RecipeId && join.TagId == TagId);
                 if (!returnedJoined)
                 {
@@ -86,9 +106,16 @@ namespace RecipeBox.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult AddTag(int id)
+        [Authorize]
+        public async Task<ActionResult> AddTag(int id)
         {
-            var thisRecipe = _db.Recipes.FirstOrDefault(recipes => recipes.RecipeId == id);
+            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var currentUser = await _userManager.FindByIdAsync(userId);
+            Recipe thisRecipe = _db.Recipes.Where(entry => entry.User.Id == currentUser.Id).FirstOrDefault(recipes => recipes.RecipeId == id);
+            if (thisRecipe == null)
+            {
+                return RedirectToAction("Details", new { id = id });
+            }
             ViewBag.TagId = new SelectList(_db.Tags, "TagId", "TagName");
             return View(thisRecipe);
         }
@@ -104,9 +131,16 @@ namespace RecipeBox.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult Delete(int id)
+        [Authorize]
+        public async Task<ActionResult> Delete(int id)
         {
-            var thisRecipe = _db.Recipes.FirstOrDefault(recipes => recipes.RecipeId == id);
+            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var currentUser = await _userManager.FindByIdAsync(userId);
+            Recipe thisRecipe = _db.Recipes.Where(entry => entry.User.Id == currentUser.Id).FirstOrDefault(recipes => recipes.RecipeId == id);
+            if (thisRecipe == null)
+            {
+                return RedirectToAction("Details", new { id = id });
+            }
             return View(thisRecipe);
         }
 
@@ -128,22 +162,22 @@ namespace RecipeBox.Controllers
             return RedirectToAction("Index");
         }
 
-        // [HttpPost]
-        // Search all recipes in db
-        // public ActionResult Search(string search)
-        // {
-        //     List<Recipe> model = _db.Recipes.Where(recipe => (recipe.Ingredient.Contains(search))).ToList();
-        //     return View(model);
-        // }
-
         [HttpPost]
-        public async Task<ActionResult> Search(string search)
+        // Search all recipes in db
+        public ActionResult Search(string search)
         {
-            var thisUserId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            var thisCurrentUser = await _userManager.FindByIdAsync(thisUserId);
-            var userRecipes = _db.Recipes.Where(entry => entry.User.Id == thisCurrentUser.Id);
-            var searchedUserRecipes = userRecipes.Where(recipe => (recipe.Ingredient.Contains(search))).ToList();
-            return View(searchedUserRecipes);
+            List<Recipe> model = _db.Recipes.Where(recipe => (recipe.Ingredient.Contains(search))).ToList();
+            return View(model);
         }
+
+        // [HttpPost]
+        // public async Task<ActionResult> Search(string search)
+        // {
+        //     var thisUserId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        //     var thisCurrentUser = await _userManager.FindByIdAsync(thisUserId);
+        //     var userRecipes = _db.Recipes.Where(entry => entry.User.Id == thisCurrentUser.Id);
+        //     var searchedUserRecipes = userRecipes.Where(recipe => (recipe.Ingredient.Contains(search))).ToList();
+        //     return View(searchedUserRecipes);
+        // }
     }
 }
